@@ -16,14 +16,6 @@ func main() {
 		SetVersion("v1.0.0").
 		SetDescription("A cli that help you create project initial files faster")
 	commando.
-		Register(nil).
-		AddArgument("target", "the name of the framework or lang that you want to use", "").
-		AddFlag("verbose, V", "display log information", commando.Bool, nil).
-		SetAction(func(args map[string]commando.ArgValue, flags map[string]commando.FlagValue) {
-	
-
-		})
-	commando.
 		Register("framework").
 		AddArgument("framework", "the name of the framework that you want to use", "").
 		AddArgument("name", "the name of your project", "").
@@ -38,7 +30,7 @@ func main() {
 		})
 	commando.
 		Register("install").
-		AddArgument("packagename", "the name of the lang that you want to use", "").
+		AddArgument("packagename", "the name of the lang that you want to use (all => list all the avaliable stable install)", "all").
 		AddFlag("verbose, V", "display log information", commando.Bool, nil).
 		SetAction(install.Select)
 	commando.Parse(nil)
