@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/bigopenworld/fastset/framework"
+	"github.com/bigopenworld/fastset/install"
 	"github.com/bigopenworld/fastset/logger"
 	"github.com/thatisuday/commando"
 )
@@ -35,5 +36,10 @@ func main() {
 		SetAction(func(args map[string]commando.ArgValue, flags map[string]commando.FlagValue) {
 			fmt.Println(args["framework"].Value)
 		})
+	commando.
+		Register("install").
+		AddArgument("packagename", "the name of the lang that you want to use", "").
+		AddFlag("verbose, V", "display log information", commando.Bool, nil).
+		SetAction(install.Select)
 	commando.Parse(nil)
 }
